@@ -12,9 +12,9 @@ Welcome = React.createClass({
 						</Col>
 					</Row>
 					<Row>
-						// <Col>
-						// 	<iframe style={{margin: "30px"}} width="533" height="300" className="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY"></iframe>
-						// </Col>
+						<Col>
+							<iframe style={{margin: "30px"}} width="640" height="350" className="embed-responsive-item" src="//www.youtube.com/embed/xz9dGRs7FOQ"></iframe>
+						</Col>
 					</Row>
 					<Row>
 						<Button href="/" bsSize="large">Set up a secured Quadratic Voting system in 45 seconds</Button>
