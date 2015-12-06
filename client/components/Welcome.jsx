@@ -1,4 +1,4 @@
-let {Col, Row, Grid, ResponsiveEmbed} = ReactBootstrap 
+let {Col, Row, Grid, ResponsiveEmbed, Button} = ReactBootstrap 
 
 Welcome = React.createClass({
 
@@ -13,12 +13,15 @@ Welcome = React.createClass({
 					</Row>
 					<Row>
 						<Col>
-							<iframe class="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY"></iframe>
+							<iframe style={{margin: "30px"}} width="533" height="300" className="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY"></iframe>
 						</Col>
 					</Row>
 					<Row>
+						<Button href="/" bsSize="large">Set up a secured Quadratic Voting system in 45 seconds</Button>
+					</Row>
+					<Row>
 						<h3>{headp}</h3>
-						<p>{par}</p>
+						<p style={{fontSize: 20}}>{par}</p>
 					</Row>
 				</Row>
 			</Grid>
