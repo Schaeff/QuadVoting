@@ -1,29 +1,55 @@
-let {ListGroup} = ReactBootstrap;
+let {ListGroup, Input, Row, Col, Panel} = ReactBootstrap;
 
 ProposalList = React.createClass({
 	getInitialState: function() {
 		return {
-			field: ''
+			from: {},
+			to: {},
+			name: "",
+			proposalList: []
 		};
 	},
 
-	onFieldChange(event) {
+	onNameChange(event) {
 		this.setState({
-			field: event.target.value 
+			name: event.target.value
+		});
+	},
+
+	onFromChange(event) {
+		this.setState({
+			from: event.target.value 
+		});
+	},
+
+	onToChange(event) {
+		this.setState({
+			to: event.target.value 
 		});
 	},
 
 	onNewProposal(event) {
+
+		var that = this
 		event.preventDefault();
 
+		
+
 		let {organizationAddress} = this.props;
-		let {field} = this.state;
+		let {field, name, from, to} = this.state;
 
-		console.log("new proposal")
-
-		var myContract = Organization.at(organizationAddress);
-		myContract.makeProposal(field, Math.floor(Date.now() / 1000) + 1, 2000000000000000, {
+		var organization = Organization.at(organizationAddress);
+		organization.makeProposal(name, moment(from).unix(), moment(to).unix(), {
 						from: web3.eth.accounts[0]
+		}, function(err, res) {
+			var proposals = [];
+			for (i = 0; i < organization.numProposals(); i++) {
+				console.log('push')
+				proposals.push(Proposal.at(organization.proposals(i)));
+			}
+			that.setState({
+				proposalList: proposals
+			});
 		});
 
 	},
@@ -52,26 +78,46 @@ ProposalList = React.createClass({
      	)
      },
 
-	render: function() {
-		let {field} = this.state;		
-		let {organizationAddress} = this.props;
+     componentDidMount: function() {
+     	let {organizationAddress} = this.props;
 
-		var organization = Organization.at(organizationAddress)
+     	var organization = Organization.at(organizationAddress)
 		var proposals = [];
 		for (i = 0; i < organization.numProposals(); i++) {
 			console.log('push')
 			proposals.push(Proposal.at(organization.proposals(i)));
 		}
+		this.setState({
+			proposalList: proposals
+		});
+     },
+
+	render: function() {
+		let {field, name, from, to, proposalList} = this.state;		
+		let {organizationAddress} = this.props;
 
 		return (
-			<div>
-				{this.renderListElements(proposals)}	
-				<form onSubmit={this.onNewProposal}>
-			        New proposal:
-			        <input type="text" name="value" value={field} onChange={this.onFieldChange}></input>
-			        <input type="submit"></input>
-			    </form> 
-			</div>
+			<Col xs={10} xsOffset={1}>
+				<Panel header="New proposal">
+					<form onSubmit={this.onNewProposal}>
+						<Row>
+							<Col xs={5}>
+					        <Input type="text" label="Name" placeholder="Subject of the proposal" value={name} onChange={this.onNameChange}></Input>
+					        </Col>
+					        <Col xs={2}>
+					        <Input type="date" label="From" placeholder=" " value={from} onChange={this.onFromChange}></Input>
+					        </Col>
+					        <Col xs={2}>
+					        <Input type="date" label="To" placeholder=" " value={to} onChange={this.onToChange}></Input>
+					        </Col>
+					        <Col xs={3}>
+					        <Input type="submit"></Input>
+					        </Col>
+				        </Row>
+				    </form> 
+				</Panel>
+				{this.renderListElements(proposalList)}	
+			</Col>
 		);
 	}
 

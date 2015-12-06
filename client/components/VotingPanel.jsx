@@ -24,6 +24,7 @@ VotingPanel = React.createClass({
 		organization.vote(choice, weight, proposalAddress, {from: web3.eth.accounts[0]}, function(err, val) {
 			console.log('err',err)
 			console.log('val',val)
+			FlowRouter.go('/orgs/' + organizationAddress + '/proposals')
 		})
 	},
 

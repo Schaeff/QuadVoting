@@ -45,6 +45,11 @@ let {Navbar, NavItem, NavDropdown, Nav, MenuItem} = ReactBootstrap;
 
 Header = React.createClass({
 
+	getOrgName() {
+		var organization = Organization.at(this.props.organization);
+		return organization.name();
+	},
+
 	renderTokenCount() {
 		var organization = Organization.at(this.props.organization);
 		console.log(organization.members(web3.eth.accounts[0]));
@@ -65,7 +70,8 @@ Header = React.createClass({
 	        <NavItem eventKey={2} href={"/orgs/" + this.props.organization + "/members"}>Members</NavItem>
 	      </Nav>
 	      <Nav pullRight>
-	        <NavItem eventKey={2} href="#">{this.renderTokenCount()}</NavItem>
+	      	<NavItem eventKey={3} href="#">{this.getOrgName()}</NavItem>
+	        <NavItem eventKey={4} href="#">{this.renderTokenCount()}</NavItem>
 	        <AccountSelectorWrapper />
 	      </Nav>
 	    </Navbar.Collapse>
@@ -93,7 +99,7 @@ Header = React.createClass({
 	  <Navbar inverse>
 	    <Navbar.Header>
 	      <Navbar.Brand>
-	        <a href="/">QuadVote</a>
+	        <a style={brandStyle} href="/">(Vote)²</a>
 	      </Navbar.Brand>
 	      <Navbar.Toggle />
 	    </Navbar.Header>
@@ -102,3 +108,9 @@ Header = React.createClass({
   	)
 }
 });
+
+var brandStyle = {
+	fontFamily: "'PT-Sans', sans-serif",
+	fontSize: 28,
+	color: "white"
+}

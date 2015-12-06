@@ -25,6 +25,9 @@ ProposalRow = React.createClass({
 			color = (rawResult === "1") ? "success" : "danger";
 		}
 
+		var close = (now > proposal.endTime()) ? <Button onClick={this.onCloseVote} disabled={now <= proposal.endTime()} block>Close</Button> : ''
+
+
 		var now = Math.floor(Date.now() / 1000);
 
 		return (
@@ -39,10 +42,12 @@ ProposalRow = React.createClass({
 						</Col>
 					</Row>
 					<Row>
-						<Col xs={2} xsOffset={8}>
-							<Button onClick={this.onCloseVote} disabled={now <= proposal.endTime()} block>Close</Button>
+						<Col xs={1} xsOffset={8}>
+							{close}
 						</Col>
-						<Col xs={2}>
+						<Col xs={1}>
+						</Col>
+						<Col xs={1}>
 							<Button onClick={this.onVote} bsStyle="success" value="Vote" block disabled={!(now >= proposal.startTime() && now < proposal.endTime())}>Vote</Button>
 						</Col>
 					</Row>
