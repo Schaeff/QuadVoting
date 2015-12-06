@@ -18,6 +18,16 @@ FlowRouter.route("/", {
     }
 });
 
+FlowRouter.route("/welcome", {
+    name: 'Welcome',
+    subscriptions(params) {
+
+    },
+    action(params) {
+        renderWithBasicLayout(<Welcome />, {organization: ''})
+    }
+});
+
 FlowRouter.route("/orgs/:organization/proposals", {
     name: 'Proposals',
     subscriptions(params) {

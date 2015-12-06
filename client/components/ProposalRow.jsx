@@ -25,7 +25,7 @@ ProposalRow = React.createClass({
 			color = (rawResult === "1") ? "success" : "danger";
 		}
 
-		var close = (now > proposal.endTime()) ? <Button onClick={this.onCloseVote} disabled={now <= proposal.endTime()} block>Close</Button> : ''
+		var close = (<Button onClick={this.onCloseVote} disabled={now <= proposal.endTime()} block>Close</Button>)
 
 
 		var now = Math.floor(Date.now() / 1000);
