@@ -32,4 +32,8 @@ kadira:react-layout
 silentcicero:solc-compiler
 silentcicero:solc
 momentjs:moment
-firfi:meteor-react-bootstrap
+cosmos:browserify
+meteorhacks:npm
+
+
+npm-container

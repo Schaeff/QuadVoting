@@ -1,3 +1,5 @@
+let {ListGroupItem, Grid, Row, Col, Button} = ReactBootstrap
+
 ProposalRow = React.createClass({
 
 	onVote() {
@@ -17,34 +19,35 @@ ProposalRow = React.createClass({
 
 		let {proposal, organizationAddress} = this.props;
 		var organization = Organization.at(organizationAddress);
-		var result = organization.propResults(proposal.address).toString(10)
+		var rawResult = organization.propResults(proposal.address).toString();
+		var color = ""
+		if(rawResult !== "-1") {
+			color = (rawResult === "1") ? "success" : "danger";
+		}
 
 		var now = Math.floor(Date.now() / 1000);
 
 		return (
-			<div style={{"display":"inline-flex"}}>
-				<div className="col-6 fixed">
-					<h3>{proposal.name()}</h3>
-				</div>
-				<div className="col-2 fixed">
-					<h3>{proposal.nbVoters().toString()}</h3>
-				</div>
-				<div className="col-3">
-					{moment.unix(proposal.startTime()).format("MM/DD/YY")}
-				</div>
-				<div className="col-3">
-					{moment.unix(proposal.endTime()).format("MM/DD/YY")}
-				</div>
-				<div className="col-2">
-					{(result == -1) ? "" : result}
-				</div>
-				<div className="col-3">
-					<input type="button" onClick={this.onCloseVote} value="Close" disabled={now <= proposal.endTime()} />
-				</div>
-				<div className="col-3">
-					<input type="button" onClick={this.onVote} value="Vote" disabled={!(now >= proposal.startTime() && now < proposal.endTime())} />
-				</div>
-			</div>
+			<ListGroupItem bsStyle={color} header={proposal.name()}>
+				<Grid>
+					<Row>
+						<Col xs={2} xsOffset={8}>
+							{moment.unix(proposal.startTime()).format("MM/DD/YY")}
+						</Col>
+						<Col xs={2}>
+							{moment.unix(proposal.endTime()).format("MM/DD/YY")}
+						</Col>
+					</Row>
+					<Row>
+						<Col xs={2} xsOffset={8}>
+							<Button onClick={this.onCloseVote} disabled={now <= proposal.endTime()} block>Close</Button>
+						</Col>
+						<Col xs={2}>
+							<Button onClick={this.onVote} bsStyle="success" value="Vote" block disabled={!(now >= proposal.startTime() && now < proposal.endTime())}>Vote</Button>
+						</Col>
+					</Row>
+				</Grid>
+			</ListGroupItem>
 		);
 	}
 

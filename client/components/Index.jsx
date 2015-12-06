@@ -1,3 +1,5 @@
+let {Input, Col} = ReactBootstrap;
+
 Index = React.createClass({
 
 	getInitialState: function() {
@@ -58,114 +60,14 @@ Index = React.createClass({
 		let {field} = this.state
 
 		return (
-		<form onSubmit={this.onCreateOrganization}>
-	        Create Organization:
-	        <input type="text" name="value" value={field} onChange={this.onFieldChange}></input>
-	        <input type="submit"></input>
-	     </form>  
+
+			<Col xs={6} xsOffset={3}>
+				<form onSubmit={this.onCreateOrganization}>
+			        <Input type="text" placeholder="Name the organization" label="Create Organization" value={field} onChange={this.onFieldChange}></Input>
+			        <Input type="submit"></Input>
+			     </form>  
+			</Col>
 		);
 	}
 
 });
-
-
-
-
-// import "Proposal";
-
-// contract Organization {
-
-// 	address public organizer;
-// 	mapping (address => bool) public members;
-// 	mapping (address => uint) public balances;
-// 	mapping (address => int) public propResults;
-// 	uint public numMembers;
-// 	uint public token_count;
-// 	uint public base_tokens = 100;
-// 	uint public minNotice = 0;
-// 	uint public numProposals;
-// 	address[] public proposals;
-
-// 	event NewMember(address _new); // so you can log the event
-// 	event DeletedMember(address _old); // so you can log the event
-// 	event Dispatch(uint amount);
-// 	event Vote(uint balance);
-
-// 	function Organization() {
-// 		organizer = msg.sender;		
-// 		token_count = 0;
-// 		numMembers = 0;
-// 	}
-
-// 	function makeProposal(string name, uint startTime, uint endTime) {
-// 		if( msg.sender != organizer ) { return; }
-// 		if( startTime < now + minNotice ) { return; }
-// 		Proposal prop = new Proposal(name, startTime, endTime);
-// 		proposals.push(prop);
-// 		numProposals++;
-// 		propResults[prop] = -1;
-// 	}
-
-// 	function addMember(address newMember) {
-// 		if(msg.sender != organizer) { return; }
-// 		members[newMember] = true;
-// 		numMembers++;
-// 		balances[newMember] = 0;
-// 		giveTokens(base_tokens, newMember);
-// 	}
-
-// 	function removeMember(address member) {
-// 		if(msg.sender != organizer || !members[member]) { return; }
-// 		members[member] = false;
-// 		numMembers--;
-// 		token_count -= balances[member];
-// 		balances[member] = 0;
-// 	}
-
-// 	function giveTokens(uint amount, address dest) {
-// 		token_count += amount;
-// 		balances[dest] += amount;
-// 	}
-
-// 	function vote(bool decision, uint weight, address proposal) {
-
-// 		if( !members[msg.sender] ) { return; }
-// 		if( balances[msg.sender] < 1) { return; }
-// 		if( weight < 1 ) { return; }
-// 		if( weight*weight > balances[msg.sender] ) { return; }
-		
-// 		Proposal prop = Proposal(proposal);
-
-// 		if(prop.hasVoted(msg.sender)) { return; }
-
-// 		//if( now >= prop.startTime() && now < prop.endTime() ) {
-// 			balances[msg.sender] -= weight*weight;
-// 			prop.vote(decision, weight, msg.sender);
-// 						return;
-// 		//}
-// 	}
-
-// 	function dispatchBalance(address proposal) {
-// 		Proposal p = Proposal(proposal);
-// 		for(var i=0; i < p.nbVoters(); i++) {
-// 			balances[p.voters(i)] += (p.bal() / p.nbVoters());	
-// 		}
-// 	}
-	
-// 	function getResult (address proposalAddress) {
-// 		if (propResults[proposalAddress] != -1) { return; }
-// 		Proposal p = Proposal(proposalAddress);
-// 		//if(now >= p.endTime() ){
-// 			propResults[p] = p.Results();
-// 			dispatchBalance(proposalAddress);
-// 			p.destroy();
-// 		//}
-// 	}
-
-// 	function destroy() {
-// 		if (msg.sender == organizer) { // without this funds could be locked in the contract forever!
-// 			suicide(organizer);
-// 		}
-// 	}
-
-// }

@@ -1,3 +1,6 @@
+let {Input, Col} = ReactBootstrap;
+
+
 MembersPane = React.createClass({
 
 	getInitialState: function() {
@@ -23,11 +26,13 @@ MembersPane = React.createClass({
 		let {field} = this.state;
 
 		return (
-		<form onSubmit={this.onAddMember}>
-	        Set value:
-	        <input type="text" name="value" value={field} onChange={this.onFieldChange}></input>
-	        <input type="submit"></input>
-	      </form>      
+
+	      	<Col xs={6} xsOffset={3}>
+				<form onSubmit={this.onAddMember}>
+			        <Input type="text" placeholder="Address of new member" label="Set value" value={field} onChange={this.onFieldChange}></Input>
+			        <Input type="submit"></Input>
+			     </form>  
+			</Col>     
 		);
 	}
 

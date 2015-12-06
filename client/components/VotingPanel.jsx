@@ -1,3 +1,5 @@
+let {Panel, Button, Input, Row, Col} = ReactBootstrap;
+
 VotingPanel = React.createClass({
 
 	getInitialState: function() {
@@ -54,16 +56,26 @@ VotingPanel = React.createClass({
 		var disabled = (weight > Number(organization.balances(web3.eth.accounts[0]).toString(10)))
 
 		return (
-			<div>
-				<h2>{proposal.name()}</h2>
-				<br></br>
-				<input type="number" value={weight} onChange={this.onChangeWeight} ></input>
-				<br></br>
-				<label>{"Price: " + (weight * weight)}</label>
-				<br></br>
-				<input type="button" value="Yes" onClick={this.onYes} disabled={disabled}></input>
-				<input type="button" value="No" onClick={this.onNo} disabled={disabled}></input>
-			</div>
+			<Col xs={6} xsOffset={3}>
+				<Panel header={proposal.name()}>
+					<Row>
+						<Col xs={3} xsOffset={3}>
+							<Input label="Weight" type="number" value={weight} onChange={this.onChangeWeight} />
+						</Col>
+						<Col xs={3}>
+							<Input label="Cost" type="number" value={weight*weight} disabled={true} />
+						</Col>
+					</Row>
+					<Row>
+						<Col xsOffset={3} xs={3}>
+							<Button onClick={this.onYes} disabled={disabled} block>For</Button>
+						</Col>
+						<Col xs={3}>
+							<Button onClick={this.onNo} disabled={disabled} block>Against</Button>
+						</Col>
+					</Row>
+				</Panel>
+			</Col>
 		);
 	}
 

@@ -1,3 +1,5 @@
+let {ListGroup} = ReactBootstrap;
+
 ProposalList = React.createClass({
 	getInitialState: function() {
 		return {
@@ -44,9 +46,9 @@ ProposalList = React.createClass({
      	})
 
      	return(
-	     		<div className="row">
+	     		<ListGroup>
 		     		{componentList}
-		     	</div>
+		     	</ListGroup>
      	)
      },
 

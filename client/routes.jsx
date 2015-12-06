@@ -14,7 +14,7 @@ FlowRouter.route("/", {
 
     },
     action(params) {
-        renderWithBasicLayout(<Index />, {organization: undefined})
+        renderWithBasicLayout(<Index />, {organization: ''})
     }
 });
 
