@@ -72,7 +72,6 @@ Header = React.createClass({
 	      <Nav pullRight>
 	      	<NavItem eventKey={3} href="#">{this.getOrgName()}</NavItem>
 	        <NavItem eventKey={4} href="#">{this.renderTokenCount()}</NavItem>
-	        <AccountSelectorWrapper />
 	      </Nav>
 	    </Navbar.Collapse>
 		)
@@ -83,7 +82,6 @@ Header = React.createClass({
 		return(
 		<Navbar.Collapse>
 	      <Nav pullRight>
-	        <AccountSelectorWrapper />
 	      </Nav>
 	    </Navbar.Collapse>
 		)

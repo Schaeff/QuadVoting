@@ -1,7 +1,7 @@
 if (typeof web3 === 'undefined') {
 	web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 }
-EthAccounts.init();
+//EthAccounts.init();
 console.log("accounts ok")
 
 Proposal = web3.eth.contract([{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"hasVoted","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":true,"inputs":[],"name":"endTime","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"bal","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"vote","type":"bool"},{"name":"weight","type":"uint256"},{"name":"member","type":"address"}],"name":"vote","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"startTime","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[],"name":"destroy","outputs":[],"type":"function"},{"constant":false,"inputs":[],"name":"Results","outputs":[{"name":"result","type":"int256"}],"type":"function"},{"constant":true,"inputs":[],"name":"forVotes","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"nbVoters","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"againstVotes","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"voters","outputs":[{"name":"","type":"address"}],"type":"function"},{"inputs":[{"name":"newName","type":"string"},{"name":"startime","type":"uint256"},{"name":"endtime","type":"uint256"}],"type":"constructor"}])
