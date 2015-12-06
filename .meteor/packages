@@ -19,7 +19,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 ethereum:web3
-ethereum:dapp-styles
 ethereum:tools
 ethereum:elements
 ethereum:accounts
@@ -33,3 +32,4 @@ kadira:react-layout
 silentcicero:solc-compiler
 silentcicero:solc
 momentjs:moment
+firfi:meteor-react-bootstrap

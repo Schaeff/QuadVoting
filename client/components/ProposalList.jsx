@@ -45,9 +45,7 @@ ProposalList = React.createClass({
 
      	return(
 	     		<div className="row">
-		     		<ul>
-		     			{componentList}
-		     		</ul>
+		     		{componentList}
 		     	</div>
      	)
      },

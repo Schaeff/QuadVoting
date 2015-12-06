@@ -26,11 +26,11 @@ Header = React.createClass({
 			                <span>Members</span>
 			            </a>
 			        </li>
-			        <li>
+			        <li className="align-right">
 			        	<a>
 			        		<span>{this.renderTokenCount()}</span>
 			        	</a>
-			        </li>
+			        </li>	
 			    </ul>
 			</nav>
 		);

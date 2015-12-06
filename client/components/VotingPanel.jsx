@@ -17,6 +17,8 @@ VotingPanel = React.createClass({
 				console.log(res)
 			}
 		})
+		console.log("choice:", choice)
+		console.log("weight:", weight)
 		organization.vote(choice, weight, proposalAddress, {from: web3.eth.accounts[0]}, function(err, val) {
 			console.log('err',err)
 			console.log('val',val)
