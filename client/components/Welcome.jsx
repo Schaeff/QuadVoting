@@ -4,18 +4,19 @@ Welcome = React.createClass({
 
 	render: function() {
 		return (
-			<Grid>
+			<Grid style={{textAlign:"center"}}>
 				<Row xs={10} xsOffset={1}>
 					<Row>
-						<Col style={{textAlign:"center"}} xs={10} xsOffset={1}>
+						<Col>
 							<h1>{subtitle}</h1>
 						</Col>
 					</Row>
 					<Row>
 						<Col>
+							<iframe class="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY"></iframe>
 						</Col>
 					</Row>
-					<Row style={{textAlign:"center"}}>
+					<Row>
 						<h3>{headp}</h3>
 						<p>{par}</p>
 					</Row>
